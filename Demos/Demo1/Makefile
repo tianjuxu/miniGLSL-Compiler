@@ -1,0 +1,29 @@
+
+# Makefile for OpenGL teaching/examples 
+
+
+
+## Linux
+CC	= gcc
+CFLAGS	=-I../util -DGL_GLEXT_PROTOTYPES -Wall 
+LDFLAGS	= -L/usr/lib -m32
+GLIBS	= -lglut -lGLU -lGL -lX11 -lXi -lXmu -lm 
+
+
+OBJS = \
+	../util/utility.o	\
+	../util/glUtils.o	\
+	../util/textfile.o
+
+
+TARGET = shader
+
+$(TARGET): $(TARGET).c $(OBJS)
+	/bin/rm -f $@
+	$(CC) $(CFLAGS) -o $@ $(TARGET).c $(OBJS)  $(LDFLAGS) $(GLIBS)
+
+
+clean:
+	/bin/rm -f *.o $(TARGET)
+
+
